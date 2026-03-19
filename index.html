@@ -924,23 +924,40 @@ em { font-style: normal; color: var(--red); }
 /* Mic button */
 .c-mic {
   width: 8rem; height: 8rem; border-radius: 50%;
-  border: 2px solid rgba(232,255,0,0.4);
-  background: var(--red);
+  border: none;
+  background: linear-gradient(145deg, #f0ff3d, #c8d900);
   color: var(--black);
   cursor: none; position: relative; z-index: 2;
   display: flex; align-items: center; justify-content: center;
-  transition: all 0.5s var(--ease-spring);
-  box-shadow: 0 0 50px rgba(232,255,0,0.2), 0 0 100px rgba(232,255,0,0.08);
+  transition: all 0.4s var(--ease-spring);
+  box-shadow:
+    0 6px 20px rgba(232,255,0,0.3),
+    0 12px 40px rgba(232,255,0,0.15),
+    inset 0 2px 4px rgba(255,255,255,0.4),
+    inset 0 -3px 6px rgba(0,0,0,0.15);
 }
-.c-mic svg { width: 2.2rem; height: 2.2rem; fill: currentColor; transition: transform 0.4s var(--ease-spring); }
+.c-mic svg { width: 2.2rem; height: 2.2rem; fill: currentColor; transition: transform 0.4s var(--ease-spring); filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2)); }
 .c-mic:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 60px rgba(232,255,0,0.35), 0 0 120px rgba(232,255,0,0.12);
+  transform: scale(1.08) translateY(-3px);
+  box-shadow:
+    0 10px 30px rgba(232,255,0,0.4),
+    0 20px 60px rgba(232,255,0,0.2),
+    inset 0 2px 4px rgba(255,255,255,0.5),
+    inset 0 -3px 6px rgba(0,0,0,0.1);
 }
-.c-mic:hover svg { transform: scale(1.15); }
+.c-mic:hover svg { transform: scale(1.1); }
+.c-mic:active {
+  transform: scale(0.95) translateY(1px);
+  box-shadow:
+    0 2px 10px rgba(232,255,0,0.3),
+    0 4px 15px rgba(232,255,0,0.1),
+    inset 0 3px 8px rgba(0,0,0,0.2),
+    inset 0 -1px 2px rgba(255,255,255,0.3);
+}
 
 .c-mic.listening {
   animation: micPulse 2s ease-in-out infinite;
+  background: linear-gradient(145deg, #f0ff3d, #c8d900);
 }
 
 @keyframes micPulse {
