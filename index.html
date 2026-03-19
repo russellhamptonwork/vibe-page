@@ -426,6 +426,15 @@ em { font-style: normal; color: var(--red); }
   color: var(--red);
   transform: translateX(12px);
 }
+.c-tool-row:nth-child(even) .c-tool-row-inner { flex-direction: row-reverse; }
+.c-tool-row:nth-child(even) .c-tool-row-left { text-align: right; }
+.c-tool-row:nth-child(even) .c-tool-row-right { align-items: flex-start; }
+.c-tool-row:nth-child(even):hover .c-tool-row-name { transform: translateX(-12px); }
+
+@media (max-width: 768px) {
+  .c-tool-row:nth-child(even) .c-tool-row-inner { flex-direction: column; }
+  .c-tool-row:nth-child(even) .c-tool-row-left { text-align: left; }
+}
 
 .c-tool-row-sub {
   margin-top: 0.6rem;
@@ -515,7 +524,7 @@ em { font-style: normal; color: var(--red); }
   drop-shadow: 0 0 40px var(--red);
 }
 .c-tool-row:hover .c-tool-row-logo {
-  opacity: 0.15;
+  opacity: 0.28;
   transform: translate(-50%, -50%) scale(1);
   filter: blur(0);
 }
@@ -560,19 +569,47 @@ em { font-style: normal; color: var(--red); }
   opacity: 0.85;
 }
 
-.c-day-body .day-break {
+/* Chapter labels */
+.c-day-chapter {
   display: block;
-  height: 1.5em;
+  margin: 3.5rem 0 1.5rem;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 400;
+  color: var(--red);
+  letter-spacing: -0.02em;
+  position: relative;
+  padding-left: 2.5rem;
+}
+.c-day-chapter::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1.5rem;
+  height: 1px;
+  background: var(--red);
+}
+.c-day-chapter:first-of-type { margin-top: 0; }
+
+/* Kicker — full viewport moment */
+.c-day-kicker-wrap {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
 }
 
 .c-day-kicker {
-  margin-top: 3rem;
   font-family: 'Instrument Serif', Georgia, serif;
-  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
   color: var(--white);
+  max-width: 20ch;
 }
 
 .c-day-kicker em {
@@ -618,12 +655,20 @@ em { font-style: normal; color: var(--red); }
   gap: 1rem;
   margin-top: 3rem;
 }
-.c-gallery-item:nth-child(1) { grid-column: 1 / -1; }
-.c-gallery-item:nth-child(5) { grid-column: span 2; }
-.c-gallery-item:nth-child(8) { grid-column: span 2; grid-row: span 2; }
-.c-gallery-item:nth-child(12) { grid-column: span 2; }
-.c-gallery-item:nth-child(15) { grid-column: span 2; grid-row: span 2; }
-.c-gallery-item:nth-child(19) { grid-column: span 2; }
+.c-gallery-item:nth-child(1)  { grid-column: 1 / -1; }
+.c-gallery-item:nth-child(2)  { grid-column: span 3; }
+.c-gallery-item:nth-child(3)  { grid-column: span 1; }
+.c-gallery-item:nth-child(5)  { grid-column: span 2; }
+.c-gallery-item:nth-child(7)  { grid-column: 1 / -1; }
+.c-gallery-item:nth-child(8)  { grid-column: span 2; grid-row: span 2; }
+.c-gallery-item:nth-child(9)  { grid-column: span 1; }
+.c-gallery-item:nth-child(10) { grid-column: span 1; }
+.c-gallery-item:nth-child(12) { grid-column: span 3; }
+.c-gallery-item:nth-child(13) { grid-column: span 1; }
+.c-gallery-item:nth-child(15) { grid-column: 1 / -1; }
+.c-gallery-item:nth-child(17) { grid-column: span 2; grid-row: span 2; }
+.c-gallery-item:nth-child(19) { grid-column: span 3; }
+.c-gallery-item:nth-child(22) { grid-column: 1 / -1; }
 
 @media (max-width: 992px) { .c-gallery { grid-template-columns: repeat(2, 1fr); }
   .c-gallery-item:nth-child(1), .c-gallery-item:nth-child(8), .c-gallery-item:nth-child(15) { grid-column: span 2; grid-row: span 1; }
@@ -1093,11 +1138,24 @@ em { font-style: normal; color: var(--red); }
     <h2 class="c-lg r d1" style="max-width:22ch;">What one day looks like as an AI-native designer</h2>
 
     <div class="c-day-body r d2">
-      Today I woke up and opened <span class="day-highlight">Claude Plan Mode</span> to think through my workflow, then opened terminal to log into my <span class="day-highlight">Claude Code</span> instance, decided to write a quick <span class="day-highlight">Markdown</span> file with specific design inspiration for a project, then worked with <span class="day-highlight">Claude</span> to scaffold the project, <span class="day-dim">ate a snack,</span> wired up <span class="day-highlight">Supabase</span>, <span class="day-highlight">Mapbox</span>, and some <span class="day-highlight">SQL</span>, defined a few design tokens, connected everything to <span class="day-highlight">Figma via MCP</span>, tweaked components in both code and Figma, regenerated things about seventeen times too many, watched <span class="day-highlight">Claude</span> mess something up and immediately try something else because Claude is relentless, <span class="day-dim">had some lunch,</span> pushed my repo to <span class="day-highlight">GitHub</span>, deployed it to <span class="day-highlight">Vercel</span> to share it out, built <span class="day-highlight">custom skills</span> to extend Claude's behavior, spun up <span class="day-highlight">agents</span> to research a new space before writing a <span class="day-highlight">PRD</span>, crafted <span class="day-highlight">system prompts</span> and user preferences to shape <span class="day-highlight">AI</span> tone and output, <span class="day-dim">ran out of power and had to plug in my computer,</span> used <span class="day-highlight">MCP servers</span> to connect <span class="day-highlight">AI</span> directly to live tools and data sources, managed multi-step <span class="day-highlight">agentic workflows</span> without losing the thread, debugged <span class="day-highlight">AI-generated</span> code without losing my mind, iterated on <span class="day-highlight">prompts</span> the way a designer iterates on comps, knew when to let the <span class="day-highlight">AI</span> run and when to yank the wheel, wrote a <span class="day-highlight">PRD</span> informed by <span class="day-highlight">AI research</span> instead of vibes, kept a living <span class="day-highlight">Markdown</span> file because good context is half the work, set up <span class="day-highlight">persistent memory</span> so Claude actually remembers what matters, chained tools together so <span class="day-highlight">agents</span> could hand off work to each other, used <span class="day-highlight">Claude in Chrome</span> to automate things I was tired of clicking through manually, pulled live data into an artifact using the <span class="day-highlight">Anthropic API</span> so the UI could actually think, reviewed what the <span class="day-highlight">agent</span> did and course-corrected instead of just trusting the output, audited the design system for consistency before a single component got built, defined the visual language before anyone touched a screen, made sure the typography, spacing, and color decisions had a reason behind them, used <span class="day-highlight">AI</span> to pressure-test the information architecture before committing to it, gave feedback on designs the way a creative director would &mdash; with a point of view and not just a preference, pushed back on the easy aesthetic choice in favor of the right user experience, <span class="day-dim">grabbed a coffee and forgot it was decaf,</span> wrote design principles that the team could actually use as a decision-making filter, used <span class="day-highlight">AI</span> to generate multiple creative directions so the first idea was never the only idea, reviewed <span class="day-highlight">AI-generated</span> UI with a critical eye and knew exactly what to throw away, connected design decisions back to business outcomes so stakeholders understood the why, <span class="day-dim">ran out of power again and definitely should have bought a longer cable,</span> ran a design critique with <span class="day-highlight">AI-generated</span> concepts as the starting point instead of a blank canvas, documented design decisions so the next person on the project wouldn't have to guess, and ended the day with a deployed product, a sharper <span class="day-highlight">PRD</span>, a tighter design system, and a longer list of things I know how to do.
-    </div>
+      <span class="c-day-chapter r">Morning</span>
+      Today I woke up and opened <span class="day-highlight">Claude Plan Mode</span> to think through my workflow, then opened terminal to log into my <span class="day-highlight">Claude Code</span> instance, decided to write a quick <span class="day-highlight">Markdown</span> file with specific design inspiration for a project, then worked with <span class="day-highlight">Claude</span> to scaffold the project, <span class="day-dim">ate a snack,</span> wired up <span class="day-highlight">Supabase</span>, <span class="day-highlight">Mapbox</span>, and some <span class="day-highlight">SQL</span>, defined a few design tokens, connected everything to <span class="day-highlight">Figma via MCP</span>, tweaked components in both code and Figma, regenerated things about seventeen times too many, watched <span class="day-highlight">Claude</span> mess something up and immediately try something else because Claude is relentless.
 
-    <div class="c-day-kicker r d3">I did this knowing today will look <em>nothing</em> like tomorrow.</div>
+      <span class="c-day-chapter r">Midday</span>
+      <span class="day-dim">Had some lunch,</span> pushed my repo to <span class="day-highlight">GitHub</span>, deployed it to <span class="day-highlight">Vercel</span> to share it out, built <span class="day-highlight">custom skills</span> to extend Claude's behavior, spun up <span class="day-highlight">agents</span> to research a new space before writing a <span class="day-highlight">PRD</span>, crafted <span class="day-highlight">system prompts</span> and user preferences to shape <span class="day-highlight">AI</span> tone and output, <span class="day-dim">ran out of power and had to plug in my computer,</span> used <span class="day-highlight">MCP servers</span> to connect <span class="day-highlight">AI</span> directly to live tools and data sources, managed multi-step <span class="day-highlight">agentic workflows</span> without losing the thread, debugged <span class="day-highlight">AI-generated</span> code without losing my mind.
+
+      <span class="c-day-chapter r">Afternoon</span>
+      Iterated on <span class="day-highlight">prompts</span> the way a designer iterates on comps, knew when to let the <span class="day-highlight">AI</span> run and when to yank the wheel, wrote a <span class="day-highlight">PRD</span> informed by <span class="day-highlight">AI research</span> instead of vibes, kept a living <span class="day-highlight">Markdown</span> file because good context is half the work, set up <span class="day-highlight">persistent memory</span> so Claude actually remembers what matters, chained tools together so <span class="day-highlight">agents</span> could hand off work to each other, used <span class="day-highlight">Claude in Chrome</span> to automate things I was tired of clicking through manually, pulled live data into an artifact using the <span class="day-highlight">Anthropic API</span> so the UI could actually think, reviewed what the <span class="day-highlight">agent</span> did and course-corrected instead of just trusting the output.
+
+      <span class="c-day-chapter r">End of Day</span>
+      Audited the design system for consistency before a single component got built, defined the visual language before anyone touched a screen, made sure the typography, spacing, and color decisions had a reason behind them, used <span class="day-highlight">AI</span> to pressure-test the information architecture before committing to it, gave feedback on designs the way a creative director would &mdash; with a point of view and not just a preference, pushed back on the easy aesthetic choice in favor of the right user experience, <span class="day-dim">grabbed a coffee and forgot it was decaf,</span> wrote design principles that the team could actually use as a decision-making filter, used <span class="day-highlight">AI</span> to generate multiple creative directions so the first idea was never the only idea, reviewed <span class="day-highlight">AI-generated</span> UI with a critical eye and knew exactly what to throw away, connected design decisions back to business outcomes so stakeholders understood the why, <span class="day-dim">ran out of power again and definitely should have bought a longer cable,</span> ran a design critique with <span class="day-highlight">AI-generated</span> concepts as the starting point instead of a blank canvas, documented design decisions so the next person on the project wouldn't have to guess, and ended the day with a deployed product, a sharper <span class="day-highlight">PRD</span>, a tighter design system, and a longer list of things I know how to do.
+    </div>
   </div>
+</section>
+
+<!-- Kicker — standalone moment -->
+<section class="c-day-kicker-wrap" data-theme="dark">
+  <div class="c-day-kicker r">I did this knowing today will look <em>nothing</em> like tomorrow.</div>
 </section>
 
 <hr class="c-divider">
