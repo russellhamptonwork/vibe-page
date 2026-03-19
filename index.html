@@ -132,29 +132,20 @@ button { font-family: inherit; }
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
-.c-nav-logo { font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em; }
-
-.c-nav-links { display: flex; gap: 2rem; }
-.c-nav-links a {
-  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.01em;
-  position: relative; overflow: hidden; display: inline-block;
+.c-nav-back {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  opacity: 0.5;
+  transition: opacity 0.4s var(--ease), color 0.4s var(--ease);
 }
-.c-nav-links a .nav-text {
-  display: inline-block;
-  transition: transform 0.5s var(--ease-out);
-}
-.c-nav-links a .nav-text-clone {
-  position: absolute; top: 0; left: 0;
+.c-nav-back:hover {
+  opacity: 1;
   color: var(--red);
-  transform: translateY(110%);
-  transition: transform 0.5s var(--ease-out);
 }
-.c-nav-links a:hover .nav-text { transform: translateY(-110%); }
-.c-nav-links a:hover .nav-text-clone { transform: translateY(0); }
 
 @media (max-width: 768px) {
   .c-nav { padding: 1.2rem 1.5rem; }
-  .c-nav-links { display: none; }
 }
 
 /* ── LAYOUT ── */
@@ -1098,13 +1089,7 @@ em { font-style: normal; color: var(--red); }
 
 <!-- Nav -->
 <nav class="c-nav">
-  <a href="https://russellhampton.work" class="c-nav-logo">Russell Hampton</a>
-  <div class="c-nav-links">
-    <a href="https://russellhampton.work"><span class="nav-text">Home</span><span class="nav-text-clone">Home</span></a>
-    <a href="https://russellhampton.work/about"><span class="nav-text">About</span><span class="nav-text-clone">About</span></a>
-    <a href="https://russellhampton.work/process"><span class="nav-text">Process</span><span class="nav-text-clone">Process</span></a>
-    <a href="https://www.linkedin.com/in/russellhampton/" target="_blank" rel="noopener"><span class="nav-text">LinkedIn</span><span class="nav-text-clone">LinkedIn</span></a>
-  </div>
+  <a href="https://russellhampton.work" class="c-nav-back">&larr; Take me back to the work</a>
 </nav>
 
 <!-- Hero -->
