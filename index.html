@@ -45,7 +45,7 @@ body::before {
   width: 200%; height: 200%;
   z-index: 9998;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 256px;
   animation: grain 6s steps(8) infinite;
@@ -316,7 +316,7 @@ em { font-style: normal; color: var(--red); }
 
 .c-hero-sub {
   margin-top: 2rem; font-size: 1.4rem;
-  max-width: 50vw; opacity: 0.25; line-height: 1.5;
+  max-width: 50vw; opacity: 0.5; line-height: 1.5;
 }
 
 .c-hero-scroll {
@@ -627,25 +627,30 @@ em { font-style: normal; color: var(--red); }
 /* Chapter labels */
 .c-day-chapter {
   display: block;
-  margin: 3.5rem 0 1.5rem;
+  margin: 5rem 0 2rem;
   font-family: 'Instrument Serif', Georgia, serif;
-  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 400;
   color: var(--red);
   letter-spacing: -0.02em;
   position: relative;
-  padding-left: 2.5rem;
+  padding-left: 3rem;
 }
 .c-day-chapter::before {
   content: '';
   position: absolute;
   left: 0;
   top: 50%;
-  width: 1.5rem;
+  width: 2rem;
   height: 1px;
   background: var(--red);
 }
 .c-day-chapter:first-of-type { margin-top: 0; }
+
+.c-day-body .day-para {
+  display: block;
+  margin-top: 1.2em;
+}
 
 /* Kicker — full viewport moment */
 .c-day-kicker-wrap {
@@ -707,17 +712,21 @@ em { font-style: normal; color: var(--red); }
 .c-gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 220px;
   gap: 1rem;
   margin-top: 3rem;
 }
-.c-gallery-item:nth-child(1)  { grid-column: 1 / -1; }
+.c-gallery-item:nth-child(1)  { grid-column: 1 / -1; grid-row: span 2; }
 .c-gallery-item:nth-child(2)  { grid-column: span 3; }
-.c-gallery-item:nth-child(3)  { grid-column: span 1; }
+.c-gallery-item:nth-child(3)  { grid-column: span 1; grid-row: span 2; }
 .c-gallery-item:nth-child(5)  { grid-column: span 2; }
+.c-gallery-item:nth-child(6)  { grid-row: span 2; }
 .c-gallery-item:nth-child(8)  { grid-column: span 2; grid-row: span 2; }
 .c-gallery-item:nth-child(12) { grid-column: span 3; }
+.c-gallery-item:nth-child(14) { grid-row: span 2; }
 .c-gallery-item:nth-child(17) { grid-column: span 2; grid-row: span 2; }
 .c-gallery-item:nth-child(19) { grid-column: span 3; }
+.c-gallery-item:nth-child(21) { grid-row: span 2; }
 
 @media (max-width: 992px) { .c-gallery { grid-template-columns: repeat(2, 1fr); }
   .c-gallery-item:nth-child(1), .c-gallery-item:nth-child(8), .c-gallery-item:nth-child(15) { grid-column: span 2; grid-row: span 1; }
@@ -1044,12 +1053,17 @@ em { font-style: normal; color: var(--red); }
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.35);
   margin-bottom: 2.5rem;
   min-height: 1.2rem;
   transition: color 0.4s var(--ease);
+  animation: statusPulse 3s ease-in-out infinite;
 }
-.c-voice-status.active { color: var(--red); }
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.c-voice-status.active { color: var(--red); animation: none; }
 
 .c-transcript {
   min-height: 2rem; margin-bottom: 1.5rem;
@@ -1058,7 +1072,7 @@ em { font-style: normal; color: var(--red); }
 }
 
 .c-response {
-  max-width: 540px; margin: 0 auto; text-align: left;
+  max-width: 700px; margin: 0 auto; text-align: left;
   background: rgba(232,255,0,0.02);
   border: 1px solid rgba(232,255,0,0.08);
   border-radius: 12px; padding: 2rem;
@@ -1248,7 +1262,7 @@ em { font-style: normal; color: var(--red); }
     <span class="r-line"><span class="r-line-inner">This entire page</span></span>
     <span class="r-line"><span class="r-line-inner d1"><em>is a</em> <em class="vibe-underline">vibe</em><em>.</em></span></span>
   </h1>
-  <p class="c-hero-sub r d3">I leveraged Claude Code to build this entire page — concept to code. <strong style="font-weight:600;opacity:1">No typing. Just voice and vibes.</strong> <em>In under two hours.</em></p>
+  <p class="c-hero-sub r d3">I leveraged Claude Code to build this entire page — concept to code. <strong style="font-weight:600;opacity:1">No typing. Just voice and vibes.</strong><br><em style="font-size:1.8em;display:inline-block;margin-top:0.3em">In under two hours.</em></p>
   <div class="c-hero-scroll">
     <span>Scroll</span>
     <div class="c-scroll-line"></div>
@@ -1268,16 +1282,21 @@ em { font-style: normal; color: var(--red); }
 
     <div class="c-day-body r d2">
       <span class="c-day-chapter r">Morning</span>
-      Today I woke up and opened <span class="day-highlight">Claude Plan Mode</span> to think through my workflow, then opened terminal to log into my <span class="day-highlight">Claude Code</span> instance, decided to write a quick <span class="day-highlight">Markdown</span> file with specific design inspiration for a project, then worked with <span class="day-highlight">Claude</span> to scaffold the project, <span class="day-dim">ate a snack,</span> wired up <span class="day-highlight">Supabase</span>, <span class="day-highlight">Mapbox</span>, and some <span class="day-highlight">SQL</span>, defined a few design tokens, connected everything to <span class="day-highlight">Figma via MCP</span>, tweaked components in both code and Figma, regenerated things about seventeen times too many, watched <span class="day-highlight">Claude</span> mess something up and immediately try something else because Claude is relentless.
+      Today I woke up and opened <span class="day-highlight">Claude Plan Mode</span> to think through my workflow, then opened terminal to log into my <span class="day-highlight">Claude Code</span> instance, decided to write a quick <span class="day-highlight">Markdown</span> file with specific design inspiration for a project, then worked with <span class="day-highlight">Claude</span> to scaffold the project. <span class="day-dim">Ate a snack.</span>
+      <span class="day-para"></span>Wired up <span class="day-highlight">Supabase</span>, <span class="day-highlight">Mapbox</span>, and some <span class="day-highlight">SQL</span>, defined a few design tokens, connected everything to <span class="day-highlight">Figma via MCP</span>, tweaked components in both code and Figma, regenerated things about seventeen times too many, watched <span class="day-highlight">Claude</span> mess something up and immediately try something else because Claude is relentless.
 
       <span class="c-day-chapter r">Midday</span>
-      <span class="day-dim">Had some lunch,</span> pushed my repo to <span class="day-highlight">GitHub</span>, deployed it to <span class="day-highlight">Vercel</span> to share it out, built <span class="day-highlight">custom skills</span> to extend Claude's behavior, spun up <span class="day-highlight">agents</span> to research a new space before writing a <span class="day-highlight">PRD</span>, crafted <span class="day-highlight">system prompts</span> and user preferences to shape <span class="day-highlight">AI</span> tone and output, <span class="day-dim">ran out of power and had to plug in my computer,</span> used <span class="day-highlight">MCP servers</span> to connect <span class="day-highlight">AI</span> directly to live tools and data sources, managed multi-step <span class="day-highlight">agentic workflows</span> without losing the thread, debugged <span class="day-highlight">AI-generated</span> code without losing my mind.
+      <span class="day-dim">Had some lunch.</span> Pushed my repo to <span class="day-highlight">GitHub</span>, deployed it to <span class="day-highlight">Vercel</span> to share it out, built <span class="day-highlight">custom skills</span> to extend Claude's behavior, spun up <span class="day-highlight">agents</span> to research a new space before writing a <span class="day-highlight">PRD</span>.
+      <span class="day-para"></span>Crafted <span class="day-highlight">system prompts</span> and user preferences to shape <span class="day-highlight">AI</span> tone and output. <span class="day-dim">Ran out of power and had to plug in my computer.</span> Used <span class="day-highlight">MCP servers</span> to connect <span class="day-highlight">AI</span> directly to live tools and data sources, managed multi-step <span class="day-highlight">agentic workflows</span> without losing the thread, debugged <span class="day-highlight">AI-generated</span> code without losing my mind.
 
       <span class="c-day-chapter r">Afternoon</span>
-      Iterated on <span class="day-highlight">prompts</span> the way a designer iterates on comps, knew when to let the <span class="day-highlight">AI</span> run and when to yank the wheel, wrote a <span class="day-highlight">PRD</span> informed by <span class="day-highlight">AI research</span> instead of vibes, kept a living <span class="day-highlight">Markdown</span> file because good context is half the work, set up <span class="day-highlight">persistent memory</span> so Claude actually remembers what matters, chained tools together so <span class="day-highlight">agents</span> could hand off work to each other, used <span class="day-highlight">Claude in Chrome</span> to automate things I was tired of clicking through manually, pulled live data into an artifact using the <span class="day-highlight">Anthropic API</span> so the UI could actually think, reviewed what the <span class="day-highlight">agent</span> did and course-corrected instead of just trusting the output.
+      Iterated on <span class="day-highlight">prompts</span> the way a designer iterates on comps, knew when to let the <span class="day-highlight">AI</span> run and when to yank the wheel, wrote a <span class="day-highlight">PRD</span> informed by <span class="day-highlight">AI research</span> instead of vibes.
+      <span class="day-para"></span>Kept a living <span class="day-highlight">Markdown</span> file because good context is half the work, set up <span class="day-highlight">persistent memory</span> so Claude actually remembers what matters, chained tools together so <span class="day-highlight">agents</span> could hand off work to each other, used <span class="day-highlight">Claude in Chrome</span> to automate things I was tired of clicking through manually, pulled live data into an artifact using the <span class="day-highlight">Anthropic API</span> so the UI could actually think, reviewed what the <span class="day-highlight">agent</span> did and course-corrected instead of just trusting the output.
 
       <span class="c-day-chapter r">End of Day</span>
-      Audited the design system for consistency before a single component got built, defined the visual language before anyone touched a screen, made sure the typography, spacing, and color decisions had a reason behind them, used <span class="day-highlight">AI</span> to pressure-test the information architecture before committing to it, gave feedback on designs the way a creative director would &mdash; with a point of view and not just a preference, pushed back on the easy aesthetic choice in favor of the right user experience, <span class="day-dim">grabbed a coffee and forgot it was decaf,</span> wrote design principles that the team could actually use as a decision-making filter, used <span class="day-highlight">AI</span> to generate multiple creative directions so the first idea was never the only idea, reviewed <span class="day-highlight">AI-generated</span> UI with a critical eye and knew exactly what to throw away, connected design decisions back to business outcomes so stakeholders understood the why, <span class="day-dim">ran out of power again and definitely should have bought a longer cable,</span> ran a design critique with <span class="day-highlight">AI-generated</span> concepts as the starting point instead of a blank canvas, documented design decisions so the next person on the project wouldn't have to guess, and ended the day with a deployed product, a sharper <span class="day-highlight">PRD</span>, a tighter design system, and a longer list of things I know how to do.
+      Audited the design system for consistency before a single component got built, defined the visual language before anyone touched a screen, made sure the typography, spacing, and color decisions had a reason behind them. Used <span class="day-highlight">AI</span> to pressure-test the information architecture before committing to it, gave feedback on designs the way a creative director would &mdash; with a point of view and not just a preference.
+      <span class="day-para"></span>Pushed back on the easy aesthetic choice in favor of the right user experience. <span class="day-dim">Grabbed a coffee and forgot it was decaf.</span> Wrote design principles that the team could actually use as a decision-making filter, used <span class="day-highlight">AI</span> to generate multiple creative directions so the first idea was never the only idea, reviewed <span class="day-highlight">AI-generated</span> UI with a critical eye and knew exactly what to throw away.
+      <span class="day-para"></span>Connected design decisions back to business outcomes so stakeholders understood the why. <span class="day-dim">Ran out of power again and definitely should have bought a longer cable.</span> Ran a design critique with <span class="day-highlight">AI-generated</span> concepts as the starting point instead of a blank canvas, documented design decisions so the next person on the project wouldn't have to guess, and ended the day with a deployed product, a sharper <span class="day-highlight">PRD</span>, a tighter design system, and a longer list of things I know how to do.
     </div>
   </div>
 </section>
@@ -1549,7 +1568,10 @@ const PROCESS_IMAGES = [
 
       const screenX = px < 0 ? px + W : px > W ? px - W : px;
       const screenY = py < 0 ? py + H : py > H ? py - H : py;
-      const a = s.alpha * twinkle;
+      // Fade in center for text readability
+      const centerDist = Math.abs(screenX - W/2) / (W/2);
+      const edgeFade = 0.4 + centerDist * 0.6;
+      const a = s.alpha * twinkle * edgeFade;
 
       // Glow for brighter stars
       if (s.r > 1.5) {
