@@ -165,7 +165,7 @@ button { font-family: inherit; }
 
 .c-xl {
   font-family: 'Instrument Serif', Georgia, serif;
-  font-size: clamp(3.6rem, 16.2vw, 14.4rem);
+  font-size: clamp(2rem, 8vw, 7.2rem);
   font-weight: 400; line-height: 0.92;
   letter-spacing: -0.03em;
 }
@@ -193,7 +193,10 @@ em { font-style: normal; color: var(--red); }
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: vibeFill 1.5s 1s var(--ease-out) forwards;
+  transition: background-position 1.5s var(--ease-out);
+}
+.vibe-underline.filled {
+  background-position: 0% 0;
 }
 .vibe-underline::after {
   content: '';
@@ -206,13 +209,10 @@ em { font-style: normal; color: var(--red); }
   border-radius: 2px;
   transform: scaleX(0);
   transform-origin: left;
-  animation: vibeLineIn 1s 1.8s var(--ease-out) forwards;
+  transition: transform 1s 0.8s var(--ease-out);
 }
-@keyframes vibeFill {
-  to { background-position: 0% 0; }
-}
-@keyframes vibeLineIn {
-  to { transform: scaleX(1); }
+.vibe-underline.filled::after {
+  transform: scaleX(1);
 }
 
 /* ── REVEALS ── */
@@ -1106,7 +1106,7 @@ em { font-style: normal; color: var(--red); }
 <section class="c-hero" data-theme="dark">
   <h1 class="c-xl c-hero-heading">
     <span class="r-line"><span class="r-line-inner">This entire page</span></span>
-    <span class="r-line"><span class="r-line-inner d1">is a <em class="vibe-underline">vibe</em>.</span></span>
+    <span class="r-line"><span class="r-line-inner d1"><em>is a</em> <em class="vibe-underline">vibe</em><em>.</em></span></span>
   </h1>
   <p class="c-hero-sub r d3">I leveraged Claude Code to build this entire page — concept to code. No typing. Just voice and vibes.</p>
   <div class="c-hero-scroll">
@@ -1602,6 +1602,18 @@ document.addEventListener('keydown', e => {
   if (e.key==='ArrowLeft') { lbI=(lbI-1+PROCESS_IMAGES.length)%PROCESS_IMAGES.length; updLb(); }
   if (e.key==='ArrowRight') { lbI=(lbI+1)%PROCESS_IMAGES.length; updLb(); }
 });
+
+/* ── Vibe fill on scroll ── */
+(function() {
+  const vibe = document.querySelector('.vibe-underline');
+  if (!vibe) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { vibe.classList.add('filled'); obs.unobserve(vibe); }
+    });
+  }, { threshold: 0.5 });
+  obs.observe(vibe);
+})();
 
 /* ── Highlight on scroll ── */
 (function() {
