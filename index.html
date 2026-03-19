@@ -173,8 +173,8 @@ button { font-family: inherit; }
 
 .c-xl {
   font-family: 'Instrument Serif', Georgia, serif;
-  font-size: clamp(2rem, 9vw, 8rem);
-  font-weight: 400; line-height: 0.95;
+  font-size: clamp(4rem, 18vw, 16rem);
+  font-weight: 400; line-height: 0.92;
   letter-spacing: -0.03em;
 }
 .c-lg {
@@ -191,6 +191,28 @@ button { font-family: inherit; }
 }
 
 em { font-style: normal; color: var(--red); }
+
+.vibe-underline {
+  position: relative;
+  display: inline-block;
+}
+.vibe-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0.05em;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--red);
+  border-radius: 2px;
+  animation: vibeSlide 3s ease-in-out infinite;
+}
+@keyframes vibeSlide {
+  0%, 100% { transform: scaleX(1); transform-origin: left; opacity: 1; }
+  25% { transform: scaleX(0); transform-origin: right; opacity: 0.6; }
+  50% { transform: scaleX(0); transform-origin: left; opacity: 0.6; }
+  75% { transform: scaleX(1); transform-origin: left; opacity: 1; }
+}
 
 /* ── REVEALS ── */
 .r {
@@ -238,8 +260,8 @@ em { font-style: normal; color: var(--red); }
 .c-hero-heading { max-width: 16ch; }
 
 .c-hero-sub {
-  margin-top: 2rem; font-size: 1rem;
-  max-width: 40ch; opacity: 0.7; line-height: 1.7;
+  margin-top: 2rem; font-size: 1.25rem;
+  max-width: 38ch; opacity: 0.7; line-height: 1.65;
 }
 
 .c-hero-scroll {
@@ -949,11 +971,22 @@ em { font-style: normal; color: var(--red); }
   padding: 6rem 2.5rem;
   border-top: 1px solid var(--border);
   text-align: center;
-  background: transparent;
-  transition: background 0.6s var(--ease), color 0.6s var(--ease);
+  position: relative;
+  overflow: hidden;
+  transition: color 0.6s var(--ease);
 }
-.c-footer:hover {
-  background: var(--white);
+.c-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--red);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.6s var(--ease-out);
+  z-index: 0;
+}
+.c-footer:hover::before {
+  transform: scaleY(1);
 }
 @media (min-width: 1200px) { .c-footer { padding: 8rem 4rem; } }
 @media (max-width: 768px) { .c-footer { padding: 4rem 1.5rem; } }
@@ -966,6 +999,7 @@ em { font-style: normal; color: var(--red); }
   line-height: 1.1;
   display: inline-block;
   position: relative;
+  z-index: 1;
   transition: color 0.6s var(--ease), transform 0.5s var(--ease-out);
 }
 .c-footer:hover .c-footer-link {
@@ -979,7 +1013,7 @@ em { font-style: normal; color: var(--red); }
   width: 0;
   height: 3px;
   background: var(--black);
-  transition: width 0.6s var(--ease-out);
+  transition: width 0.6s 0.15s var(--ease-out);
 }
 .c-footer:hover .c-footer-link::after { width: 100%; }
 
@@ -990,11 +1024,13 @@ em { font-style: normal; color: var(--red); }
   opacity: 0.35;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  position: relative;
+  z-index: 1;
   transition: color 0.6s var(--ease), opacity 0.6s var(--ease);
 }
 .c-footer:hover .c-footer-sub {
   color: var(--black);
-  opacity: 0.5;
+  opacity: 0.6;
 }
 </style>
 </head>
@@ -1029,7 +1065,7 @@ em { font-style: normal; color: var(--red); }
 <section class="c-hero" data-theme="dark">
   <h1 class="c-xl c-hero-heading">
     <span class="r-line"><span class="r-line-inner">This entire page</span></span>
-    <span class="r-line"><span class="r-line-inner d1">is a <em>vibe</em>.</span></span>
+    <span class="r-line"><span class="r-line-inner d1">is a <em class="vibe-underline">vibe</em>.</span></span>
   </h1>
   <p class="c-hero-sub r d3">I leveraged Claude Code to build this entire page — concept to code. No typing. Just voice and vibes.</p>
   <div class="c-hero-scroll">
