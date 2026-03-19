@@ -1009,16 +1009,6 @@ em { font-style: normal; color: var(--red); }
 @keyframes blink { 50% { opacity: 0; } }
 
 .c-text-wrap { max-width: 520px; margin: 2rem auto 0; display: none; position: relative; }
-.c-text-wrap::before {
-  content: 'TYPE A QUESTION';
-  position: absolute;
-  top: -1.8rem; left: 1.6rem;
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: var(--red);
-  opacity: 0.6;
-}
 .c-text-in {
   width: 100%; padding: 1.3rem 1.8rem;
   border-radius: 100px;
@@ -1348,7 +1338,7 @@ em { font-style: normal; color: var(--red); }
     <div class="c-voice-status" id="voiceStatus">Ready to listen</div>
 
     <div class="c-text-wrap" id="voiceFallback">
-      <input type="text" class="c-text-in" id="textInput" placeholder="Type your question and press Enter...">
+      <input type="text" class="c-text-in" id="textInput" placeholder="Type a question...">
     </div>
     <div class="c-transcript" id="transcript"></div>
     <div class="c-response" id="responseBox"></div>
