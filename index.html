@@ -1095,6 +1095,27 @@ em { font-style: normal; color: var(--red); }
 }
 
 /* ══════════════════════════════════════
+   BACK TO TOP
+   ══════════════════════════════════════ */
+.c-btt {
+  text-align: center;
+  padding: 4rem 2rem;
+  border-top: 1px solid var(--border);
+}
+.c-btt-link {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(0.9rem, 2vw, 1.4rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  opacity: 0.4;
+  transition: opacity 0.4s var(--ease), color 0.4s var(--ease);
+}
+.c-btt-link:hover {
+  opacity: 1;
+  color: var(--red);
+}
+
+/* ══════════════════════════════════════
    FOOTER — BIG LINK
    ══════════════════════════════════════ */
 .c-footer {
@@ -1396,6 +1417,10 @@ em { font-style: normal; color: var(--red); }
   </div>
 </section>
 
+<!-- Back to top -->
+<div class="c-btt" id="backToTop">
+  <a href="#" class="c-btt-link">&uarr; Back to top</a>
+</div>
 
 <!-- Lightbox -->
 <div class="c-lb" id="lightbox">
