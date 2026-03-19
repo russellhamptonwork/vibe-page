@@ -889,6 +889,7 @@ em { font-style: normal; color: var(--red); }
   font-weight: 400;
   line-height: 0.95;
   letter-spacing: -0.03em;
+  margin-bottom: 4rem;
   line-height: 1.1;
   margin-bottom: 0.5rem;
 }
@@ -902,7 +903,7 @@ em { font-style: normal; color: var(--red); }
 .c-mic-wrap {
   position: relative;
   display: inline-block;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
 }
 
 /* Orbital rings */
@@ -1074,7 +1075,7 @@ em { font-style: normal; color: var(--red); }
 }
 @keyframes blink { 50% { opacity: 0; } }
 
-.c-text-wrap { max-width: 520px; margin: 2rem auto 0; display: none; position: relative; }
+.c-text-wrap { max-width: 520px; margin: 3rem auto 0; display: none; position: relative; }
 .c-text-in {
   width: 100%; padding: 1.3rem 1.8rem;
   border-radius: 100px;
@@ -1092,7 +1093,9 @@ em { font-style: normal; color: var(--red); }
   background: rgba(232,255,0,0.06);
   box-shadow: 0 0 40px rgba(232,255,0,0.08), 0 0 80px rgba(232,255,0,0.03);
 }
-.c-text-in::placeholder { color: rgba(255,255,255,0.55); }
+.c-text-in::placeholder { color: rgba(255,255,255,0.55); transition: color 0.4s var(--ease); }
+.c-text-in:hover::placeholder { color: var(--red); }
+.c-text-in:focus::placeholder { color: rgba(255,255,255,0.3); }
 
 /* Scan line effect */
 .c-voice-scanline {
