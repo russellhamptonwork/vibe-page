@@ -110,17 +110,26 @@ button { font-family: inherit; }
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 400;
-  color: var(--white);
   letter-spacing: -0.02em;
   overflow: hidden;
+  background: linear-gradient(90deg, var(--red) 50%, var(--white) 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: preIn 1.2s var(--ease-out) 0.4s backwards, preColorFill 1.5s 1s var(--ease-out) forwards;
 }
 .preloader-inner {
   display: inline-block;
-  animation: preIn 1.2s var(--ease-out) 0.4s backwards;
 }
 @keyframes preIn {
   from { opacity: 0; transform: translateY(100%) scale(0.95); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes preColorFill {
+  from { background-position: 100% 0; }
+  to { background-position: 0% 0; }
 }
 
 .preloader-line {
@@ -1539,7 +1548,7 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     document.getElementById('preloader').classList.add('done');
     document.querySelectorAll('.r-line').forEach(el => el.classList.add('v'));
-  }, 3500);
+  }, 2500);
 });
 
 /* ── Scroll reveals ── */
