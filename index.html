@@ -944,26 +944,26 @@ em { font-style: normal; color: var(--red); }
 /* Mic button */
 .c-mic {
   width: 10rem; height: 10rem; border-radius: 50%;
-  border: 1px solid rgba(232,255,0,0.15);
-  background: radial-gradient(circle at 50% 45%, rgba(232,255,0,0.06) 0%, transparent 70%);
-  color: var(--white);
+  border: 2px solid rgba(232,255,0,0.35);
+  background: radial-gradient(circle at 50% 45%, rgba(232,255,0,0.1) 0%, transparent 65%);
+  color: var(--red);
   cursor: none; position: relative; z-index: 2;
   display: flex; align-items: center; justify-content: center;
-  transition: all 0.5s var(--ease);
+  transition: all 0.5s var(--ease-spring);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   box-shadow:
-    0 0 60px rgba(232,255,0,0.04),
-    inset 0 0 40px rgba(232,255,0,0.03);
+    0 0 80px rgba(232,255,0,0.08),
+    inset 0 0 50px rgba(232,255,0,0.05);
 }
 /* Outer ring */
 .c-mic::before {
   content: '';
   position: absolute;
-  inset: -12px;
+  inset: -14px;
   border-radius: 50%;
-  border: 1px solid rgba(232,255,0,0.08);
-  transition: all 0.6s var(--ease);
+  border: 1px solid rgba(232,255,0,0.15);
+  transition: all 0.5s var(--ease-spring);
   pointer-events: none;
 }
 /* Inner ring */
@@ -972,53 +972,56 @@ em { font-style: normal; color: var(--red); }
   position: absolute;
   inset: 6px;
   border-radius: 50%;
-  border: 1px solid rgba(232,255,0,0.1);
-  transition: all 0.6s var(--ease);
+  border: 1px solid rgba(232,255,0,0.2);
+  transition: all 0.5s var(--ease-spring);
   pointer-events: none;
 }
 .c-mic svg {
-  width: 2rem; height: 2rem;
+  width: 2.2rem; height: 2.2rem;
   fill: currentColor;
   position: relative; z-index: 1;
-  opacity: 0.6;
-  transition: all 0.5s var(--ease);
+  opacity: 0.8;
+  transition: all 0.5s var(--ease-spring);
 }
 .c-mic:hover {
-  transform: scale(1.04);
-  border-color: rgba(232,255,0,0.4);
-  background: radial-gradient(circle at 50% 45%, rgba(232,255,0,0.12) 0%, transparent 70%);
+  transform: scale(1.35);
+  border-color: var(--red);
+  background: var(--red);
+  color: var(--black);
   box-shadow:
-    0 0 80px rgba(232,255,0,0.08),
-    0 0 160px rgba(232,255,0,0.04),
-    inset 0 0 60px rgba(232,255,0,0.05);
+    0 0 60px rgba(232,255,0,0.3),
+    0 0 120px rgba(232,255,0,0.15),
+    0 0 200px rgba(232,255,0,0.06);
 }
 .c-mic:hover::before {
-  inset: -20px;
-  border-color: rgba(232,255,0,0.15);
+  inset: -24px;
+  border-color: rgba(232,255,0,0.3);
 }
 .c-mic:hover::after {
-  inset: 10px;
-  border-color: rgba(232,255,0,0.2);
+  inset: -1px;
+  border-color: rgba(255,255,255,0.2);
 }
-.c-mic:hover svg { opacity: 1; color: var(--red); }
+.c-mic:hover svg { opacity: 1; transform: scale(1.1); }
 .c-mic:active {
-  transform: scale(0.96);
-  background: radial-gradient(circle at 50% 45%, rgba(232,255,0,0.2) 0%, transparent 70%);
+  transform: scale(1.2);
   box-shadow:
-    0 0 40px rgba(232,255,0,0.12),
-    inset 0 0 80px rgba(232,255,0,0.08);
+    0 0 40px rgba(232,255,0,0.4),
+    inset 0 0 30px rgba(0,0,0,0.15);
 }
 
 .c-mic.listening {
-  border-color: rgba(232,255,0,0.5);
-  background: radial-gradient(circle at 50% 45%, rgba(232,255,0,0.15) 0%, transparent 70%);
+  transform: scale(1.35);
+  border-color: var(--red);
+  background: var(--red);
+  color: var(--black);
   animation: micPulse 2s ease-in-out infinite;
 }
-.c-mic.listening svg { opacity: 1; color: var(--red); }
+.c-mic.listening svg { opacity: 1; }
+.c-mic.listening::before { inset: -24px; border-color: rgba(232,255,0,0.3); }
 
 @keyframes micPulse {
-  0%,100% { box-shadow: 0 0 60px rgba(232,255,0,0.08), inset 0 0 40px rgba(232,255,0,0.05); }
-  50% { box-shadow: 0 0 100px rgba(232,255,0,0.15), inset 0 0 60px rgba(232,255,0,0.08); }
+  0%,100% { box-shadow: 0 0 60px rgba(232,255,0,0.25), 0 0 120px rgba(232,255,0,0.1); }
+  50% { box-shadow: 0 0 100px rgba(232,255,0,0.4), 0 0 200px rgba(232,255,0,0.15); }
 }
 
 /* Expanding rings when listening */
