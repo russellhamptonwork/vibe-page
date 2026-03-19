@@ -497,6 +497,54 @@ em { font-style: normal; color: var(--red); }
   .c-tool-row-logo { width: 5rem; height: 5rem; }
 }
 
+/* ══════════════════════════════════════
+   DAY IN THE LIFE
+   ══════════════════════════════════════ */
+.c-day-body {
+  margin-top: 3.5rem;
+  max-width: none;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  line-height: 2;
+  color: rgba(255,255,255,0.85);
+  font-weight: 400;
+}
+
+.c-day-body .day-highlight {
+  color: var(--black);
+  background: var(--red);
+  padding: 0.05em 0.35em;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.c-day-body .day-dim {
+  opacity: 0.5;
+  transition: opacity 0.5s var(--ease);
+}
+
+.c-day-body:hover .day-dim {
+  opacity: 0.85;
+}
+
+.c-day-body .day-break {
+  display: block;
+  height: 1.5em;
+}
+
+.c-day-kicker {
+  margin-top: 3rem;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--white);
+}
+
+.c-day-kicker em {
+  font-style: normal;
+  color: var(--red);
+}
+
 /* Arrow indicator */
 .c-tool-row-arrow {
   width: 2rem; height: 2rem;
@@ -749,19 +797,17 @@ em { font-style: normal; color: var(--red); }
   <div class="c-marquee-inner" id="marquee"></div>
 </div>
 
-<!-- Workflow -->
-<section class="c-section" data-theme="dark" id="workflow">
+<!-- Day in the Life -->
+<section class="c-section" data-theme="dark" id="dayinthelife">
   <div class="c-container">
-    <span class="c-label r">The Workflow</span>
-    <h2 class="c-lg r d1" style="max-width:16ch;">AI-native design process</h2>
-    <div class="c-timeline r d2" id="timelineTrack">
-      <div class="c-timeline-line"><div class="c-timeline-fill" id="timelineFill"></div></div>
-      <div class="c-step"><div class="c-step-dot">01</div><div><h3>Ideate</h3><p>AI-assisted research and strategy</p></div></div>
-      <div class="c-step"><div class="c-step-dot">02</div><div><h3>Design</h3><p>Figma + Midjourney concepts</p></div></div>
-      <div class="c-step"><div class="c-step-dot">03</div><div><h3>Prototype</h3><p>Claude Code conversation</p></div></div>
-      <div class="c-step"><div class="c-step-dot">04</div><div><h3>Test</h3><p>Accelerated user validation</p></div></div>
-      <div class="c-step"><div class="c-step-dot">05</div><div><h3>Ship</h3><p>Vercel + Supabase production</p></div></div>
+    <span class="c-label r">Day in the Life</span>
+    <h2 class="c-lg r d1" style="max-width:22ch;">What one day looks like as an AI-native designer</h2>
+
+    <div class="c-day-body r d2">
+      Today I woke up and opened <span class="day-highlight">Claude Plan Mode</span> to think through my workflow, then opened terminal to log into my <span class="day-highlight">Claude Code</span> instance, decided to write a quick Markdown file with specific design inspiration for a project, then worked with Claude to scaffold the project, <span class="day-dim">ate a snack,</span> wired up <span class="day-highlight">Supabase</span>, <span class="day-highlight">Mapbox</span>, and some SQL, defined a few design tokens, connected everything to <span class="day-highlight">Figma via MCP</span>, tweaked components in both code and Figma, regenerated things about seventeen times too many, watched Claude mess something up and immediately try something else because Claude is relentless, <span class="day-dim">had some lunch,</span> pushed my repo to <span class="day-highlight">GitHub</span>, deployed it to <span class="day-highlight">Vercel</span> to share it out, built custom skills to extend Claude's behavior, spun up agents to research a new space before writing a PRD, crafted system prompts and user preferences to shape AI tone and output, <span class="day-dim">ran out of power and had to plug in my computer,</span> used <span class="day-highlight">MCP servers</span> to connect AI directly to live tools and data sources, managed multi-step agentic workflows without losing the thread, debugged AI-generated code without losing my mind, iterated on prompts the way a designer iterates on comps, knew when to let the AI run and when to yank the wheel, wrote a PRD informed by AI research instead of vibes, kept a living Markdown file because good context is half the work, set up persistent memory so Claude actually remembers what matters, chained tools together so agents could hand off work to each other, used <span class="day-highlight">Claude in Chrome</span> to automate things I was tired of clicking through manually, pulled live data into an artifact using the <span class="day-highlight">Anthropic API</span> so the UI could actually think, reviewed what the agent did and course-corrected instead of just trusting the output, audited the design system for consistency before a single component got built, defined the visual language before anyone touched a screen, made sure the typography, spacing, and color decisions had a reason behind them, used AI to pressure-test the information architecture before committing to it, gave feedback on designs the way a creative director would &mdash; with a point of view and not just a preference, pushed back on the easy aesthetic choice in favor of the right user experience, <span class="day-dim">grabbed a coffee and forgot it was decaf,</span> wrote design principles that the team could actually use as a decision-making filter, used AI to generate multiple creative directions so the first idea was never the only idea, reviewed generated UI with a critical eye and knew exactly what to throw away, connected design decisions back to business outcomes so stakeholders understood the why, <span class="day-dim">ran out of power again and definitely should have bought a longer cable,</span> ran a design critique with AI-generated concepts as the starting point instead of a blank canvas, documented design decisions so the next person on the project wouldn't have to guess, and ended the day with a deployed product, a sharper PRD, a tighter design system, and a longer list of things I know how to do.
     </div>
+
+    <div class="c-day-kicker r d3">I did this knowing today will look <em>nothing</em> like tomorrow.</div>
   </div>
 </section>
 
@@ -894,8 +940,6 @@ em { font-style: normal; color: var(--red); }
     </div>
   </div>
 </section>
-
-<hr class="c-divider">
 
 <!-- Process Gallery -->
 <section class="c-section" data-theme="dark" id="process">
