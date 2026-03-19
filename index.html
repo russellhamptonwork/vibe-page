@@ -100,25 +100,53 @@ button { font-family: inherit; }
   position: fixed; inset: 0; z-index: 10000;
   background: var(--black);
   display: flex; align-items: center; justify-content: center;
-  transition: opacity 0.8s var(--ease), visibility 0.8s;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: opacity 1.2s var(--ease), visibility 1.2s;
 }
 .preloader.done { opacity: 0; visibility: hidden; }
 
 .preloader-text {
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  font-weight: 600;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 400;
   color: var(--white);
   letter-spacing: -0.02em;
   overflow: hidden;
 }
-.preloader-text span { color: var(--red); }
 .preloader-inner {
   display: inline-block;
-  animation: preIn 0.8s var(--ease) 0.2s backwards;
+  animation: preIn 1.2s var(--ease-out) 0.4s backwards;
 }
 @keyframes preIn {
-  from { opacity: 0; transform: translateY(100%); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(100%) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.preloader-line {
+  width: 60px;
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+  position: relative;
+  overflow: hidden;
+  animation: preLineIn 0.8s 1s var(--ease-out) backwards;
+}
+.preloader-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--red);
+  animation: preLineFill 2s 1.2s var(--ease) forwards;
+}
+@keyframes preLineIn {
+  from { opacity: 0; width: 0; }
+  to { opacity: 1; width: 60px; }
+}
+@keyframes preLineFill {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
 }
 
 /* ── NAV ── */
@@ -1095,6 +1123,7 @@ em { font-style: normal; color: var(--red); }
 <!-- Preloader -->
 <div class="preloader" id="preloader">
   <div class="preloader-text"><span class="preloader-inner">Russell Hampton</span></div>
+  <div class="preloader-line"></div>
 </div>
 
 <!-- Nav -->
@@ -1510,7 +1539,7 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     document.getElementById('preloader').classList.add('done');
     document.querySelectorAll('.r-line').forEach(el => el.classList.add('v'));
-  }, 900);
+  }, 3500);
 });
 
 /* ── Scroll reveals ── */
