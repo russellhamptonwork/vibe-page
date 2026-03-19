@@ -1302,8 +1302,8 @@ em { font-style: normal; color: var(--red); }
 <section class="c-section" data-theme="dark" id="process">
   <div class="c-container">
     <span class="c-label r">The Process</span>
-    <h2 class="c-lg r d1">How it gets made</h2>
-    <p class="r d2" style="opacity:0.65; max-width:48ch; margin-top:0.5rem;">Screenshots from real AI-native design sessions — the messy, iterative truth.</p>
+    <h2 class="c-lg r d1">How it gets <em class="vibe-underline">made</em></h2>
+    <p class="r d2" style="opacity:0.81; max-width:48ch; margin-top:0.5rem; font-size:1.25rem;">Screenshots from real AI-native design sessions — the messy, iterative truth.</p>
     <div id="galleryContainer"></div>
   </div>
 </section>
@@ -1629,14 +1629,14 @@ document.addEventListener('keydown', e => {
 
 /* ── Vibe fill on scroll ── */
 (function() {
-  const vibe = document.querySelector('.vibe-underline');
-  if (!vibe) return;
+  const vibes = document.querySelectorAll('.vibe-underline');
+  if (!vibes.length) return;
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) { vibe.classList.add('filled'); obs.unobserve(vibe); }
+      if (e.isIntersecting) { e.target.classList.add('filled'); obs.unobserve(e.target); }
     });
   }, { threshold: 0.5 });
-  obs.observe(vibe);
+  vibes.forEach(v => obs.observe(v));
 })();
 
 /* ── Highlight on scroll ── */
